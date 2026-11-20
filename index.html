@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sky Squadron: build a plane from blocks and fly it against a raider fleet. Keyboard and mouse, or gamepad; optional two-pilot split screen.">
+<title>Sky Squadron</title>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:"Segoe UI",Arial,sans-serif;user-select:none}
+  canvas{display:block}
+  #hud{position:fixed;left:0;top:0;pointer-events:none}
+  #overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+           background:rgba(10,20,40,.72);color:#fff;text-align:center}
+  #overlay h1{font-size:54px;margin:0 0 8px;letter-spacing:2px}
+  #overlay p{font-size:19px;line-height:1.55;margin:5px 0}
+  #menu{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;margin:10px 0}
+  .mode{font:inherit;font-size:21px;color:#fff;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.5);
+        border-radius:12px;padding:13px 20px;margin:8px;cursor:pointer;min-width:240px}
+  .mode small{display:block;font-size:14px;opacity:.85;margin-top:4px}
+  .mode.sel{background:#2f8fe0;border-color:#fff}
+  .mode.minor{font-size:17px;min-width:200px;padding:10px 16px}
+  #quit{font:inherit;font-size:16px;color:#fff;background:none;border:1px solid rgba(255,255,255,.5);border-radius:8px;
+        padding:6px 14px;margin:8px;cursor:pointer;display:none}
+  .small{opacity:.82;font-size:14px !important}
+  #pads{white-space:pre-line}
+</style>
+</head>
+<body>
+<canvas id="hud"></canvas>
+<div id="overlay">
+  <h1 id="title">✈ SKY SQUADRON</h1>
+  <p id="msg"></p>
+  <div id="menu">
+    <button class="mode" id="btnC">Continue<small id="btnCsub"></small></button>
+    <button class="mode" id="btn1">Play<small>Build a plane and fight the raider fleet</small></button>
+    <button class="mode minor" id="btn2">Split screen<small>Two pilots on one screen: co-op or duels</small></button>
+  </div>
+  <button id="quit">Quit to menu</button>
+  <p class="small"><b>Keyboard + mouse</b> — click to capture the mouse, then point where you want to fly &nbsp;|&nbsp; left button: guns &nbsp;|&nbsp; right button: missiles<br>
+     Shift: afterburner &nbsp;|&nbsp; C: air brake &nbsp;|&nbsp; R: skill &nbsp;|&nbsp; Q / E: rudder &nbsp;|&nbsp; W A S D: fly by hand instead &nbsp;|&nbsp; Space / F: guns / missiles &nbsp;|&nbsp; Esc: pause</p>
+  <p class="small"><b>Gamepad</b> — left stick: pitch &amp; roll (pull back to climb) &nbsp;|&nbsp; right stick or LB / RB: rudder &nbsp;|&nbsp; RT: guns &nbsp;|&nbsp; LT: missiles<br>
+     A: afterburner &nbsp;|&nbsp; B: air brake &nbsp;|&nbsp; Y: skill &nbsp;|&nbsp; View/Back: invert pitch &nbsp;|&nbsp; Start: pause</p>
+  <p class="small"><b>Hangar</b> — mouse: left click places a part on the face you point at, right click removes, middle click paints, right-drag turns the view, wheel zooms<br>
+     gamepad: stick moves the cursor, LB / RB layer, LT / RT part, A place, B remove, X paint, Y mirror, Start ready &nbsp;|&nbsp;
+     keys: WASD, Q/E, Z/C, Space, X, F, V, R</p>
+  <p class="small" id="pads"></p>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="js/world.js"></script>
+<script src="js/game.js"></script>
+<script src="js/net.js"></script>
+</body>
+</html>

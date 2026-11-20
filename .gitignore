@@ -1,0 +1,7 @@
+# the last version before the block builder; kept locally, not part of the game
+index.before-builder.html
+
+# operating system litter
+Thumbs.db
+desktop.ini
+.DS_Store
